@@ -29,7 +29,7 @@ $("#find-book").on("click", function(){
 
 function showBookInfo() {
     var book = $(this).attr("data-name"); 
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + book + "&api_key=wmlyUx6osGzUCeMqFyU7NIXgqSuXtPET&limit=10"; 
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + book + "&api_key=wmlyUx6osGzUCeMqFyU7NIXgqSuXtPET&limit=10"; 
     $.ajax({
         url: queryURL,
         method: "GET"
