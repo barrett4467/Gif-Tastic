@@ -5,7 +5,7 @@ function renderButtons() {
 
     for (var i = 0; i < topics.length; i++){
           var bookButton = $("<button>");
-          bookButton.addClass("movie");
+          bookButton.addClass("book");
           bookButton.attr("data-name", topics[i]);
           bookButton.text(topics[i]);
 
@@ -14,7 +14,7 @@ function renderButtons() {
 
   }
 
-$("#add-book").on("click", function(){
+$("#find-book").on("click", function(){
     event.preventDefault();
 
     var book = $("#book").val().trim();
@@ -31,19 +31,22 @@ function showBookInfo() {
     var book = $(this).attr("data-name"); 
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + book + "&api_key=wmlyUx6osGzUCeMqFyU7NIXgqSuXtPET&limit=5"; 
     
-    
     $.ajax({
         url: queryURL,
         method: "GET"
         
     }).then(function(response){
+        var gif = response.data.length;
+        console.log("Gif: " + gif)
 
       console.log(response);
-      $("#book-view").text(JSON.stringify(response));
+    //   $("#book-view").text(JSON.stringify(response));
         response.data.forEach(function(gif, i){
             var rating = response.data[i].rating;
-            
+            var img = $("<img>")
+            var gifAnimated = img.attr("src", response.data[i].images.fixed_height_small.url);
             $("#book-view").html("<div id= 'info'></div>");
+            $("#info").append(gifAnimated);
             $("#info").append("<p> Rating: " + rating + "</p>");
 
             console.log(response.data[i])
