@@ -48,12 +48,12 @@ function showBookInfo() {
                 "data-state": "still",
                 "data-still": response.data[i].images.fixed_height_small_still.url,
                 "data-animate": response.data[i].images.fixed_height_small.url,
-                "class": "gif"
+                "id": "gif"
             });
             
-            $("#book-view").append("<div id= 'info'></div>");
-            $("#info").append(bookImage);
-            $("#info").append("<p> Rating: " + rating + "</p>");
+            $("#book-view").prepend("<div id= 'info'></div>");
+            $("#info").prepend(bookImage);
+            $("#info").prepend("<p> Rating: " + rating + "</p>");
             
             console.log(response.data[i])
             
@@ -66,24 +66,25 @@ function showBookInfo() {
         //   $("#info").append("<img src="+ response.Poster + "/>")
         
     });
-            $(".gif").on("click", function(){
-                var state = $("#this").attr("data-state");
-                var stillURL = $(this).attr("data-still");
-                var animateURL = $(this).attr("data-animate");
     
-                if (state === "still"){
-                    $(this).attr("src", animateURL);
-                    $(this).attr("data-state", "animate");
     
-                } else{
-                    $(this).attr("src", stillURL);
-                    $(this).attr("data-state", "still"); 
-                }
-                
-            })
-
-
-  }
+}
+        $("#book-view").on("click", "#gif", function(){
+            // alert("YESSS")
+            var state = $(this).attr("data-state");
+            var stillURL = $(this).attr("data-still");
+            var animateURL = $(this).attr("data-animate");
+    
+            if (state === "still"){
+                $(this).attr("data-state", "animate");
+                $(this).attr("src", animateURL);
+    
+            } else{
+                $(this).attr("data-state", "still");
+                $(this).attr("src", stillURL);
+            }
+            
+        })
 
   $(document).on("click", ".book", showBookInfo);
   renderButtons();
