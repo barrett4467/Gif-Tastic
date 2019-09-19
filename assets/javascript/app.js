@@ -1,4 +1,4 @@
-var topics = ["To Kill a Mockingbird", "The Old Man and the Sea", "Wuthering Heights", "Black Beauty", "The Little Prince"]
+var topics = ["To Kill a Mockingbird", "The Old Man and the Sea", "Wuthering Heights", "Of Mice and Men", "The Little Prince"]
 
 function renderButtons() {
     $("#buttons-view").empty(); 
@@ -16,14 +16,19 @@ function renderButtons() {
 
 $("#find-book").on("click", function(){
     event.preventDefault();
-
     var book = $("#book").val().trim();
-    console.log(book);
+    
+    if (book === ""){
+        alert("Invalid Selection! Try again!!");
 
-    topics.push(book);
-    console.log(topics);
-
-    renderButtons();
+    } else {
+        console.log(book);
+    
+        topics.push(book);
+        console.log(topics);
+    
+        renderButtons();
+    }
 
 })
 
@@ -43,17 +48,17 @@ function showBookInfo() {
         response.data.forEach(function(gif, i){
             var rating = response.data[i].rating;
             var img = $("<img>")
-            var bookImage = img.attr("src", response.data[i].images.fixed_height_small_still.url);
+            var bookImage = img.attr("src", response.data[i].images.fixed_height_still.url);
             img.attr({
                 "data-state": "still",
-                "data-still": response.data[i].images.fixed_height_small_still.url,
-                "data-animate": response.data[i].images.fixed_height_small.url,
+                "data-still": response.data[i].images.fixed_height_still.url,
+                "data-animate": response.data[i].images.fixed_height.url,
                 "id": "gif"
             });
             
-            $("#book-view").prepend("<div id= 'info'></div>");
+            $("#book-view").prepend("<div class= 'four columns' id= 'info'></div>");
             $("#info").prepend(bookImage);
-            $("#info").prepend("<p> Rating: " + rating + "</p>");
+            $("#info").append("<p> Rating: " + rating + "</p>");
             
             console.log(response.data[i])
             

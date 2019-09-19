@@ -1,0 +1,9 @@
+#gif {
+    width: 310px; 
+}
+
+.book, #find-book {
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+
+}
