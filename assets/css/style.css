@@ -5,5 +5,10 @@
 .book, #find-book {
     font-family: 'Playfair Display', serif;
     text-transform: uppercase;
+    background-color: #ffffff;
 
 }
+body {
+    background-color: #c2c0bc;
+}
+

@@ -30,6 +30,8 @@ $("#find-book").on("click", function(){
         renderButtons();
     }
 
+    $("#book").val("");
+
 })
 
 function showBookInfo() {
